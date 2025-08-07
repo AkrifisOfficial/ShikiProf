@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akrifis - Shikimori Profile</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div id="profile-header"></div>
+        </div>
+    </header>
+    
+    <main class="container">
+        <section id="anime-stats"></section>
+        <section id="favorites-section">
+            <h2><i class="fas fa-star"></i> Избранное</h2>
+            <div id="favorites"></div>
+        </section>
+        <section id="anime-list">
+            <h2><i class="fas fa-list"></i> Просмотренные аниме</h2>
+            <div class="filters">
+                <input type="text" id="search" placeholder="Поиск...">
+                <select id="sort">
+                    <option value="name">По названию</option>
+                    <option value="score">По оценке</option>
+                </select>
+            </div>
+            <div id="anime-container"></div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Данные обновлены: <span id="update-date"></span></p>
+            <p>Синхронизировано с <a href="https://shikimori.one/Akrifis" target="_blank">Shikimori</a></p>
+        </div>
+    </footer>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
