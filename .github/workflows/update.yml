@@ -1,0 +1,31 @@
+name: Update Shikimori Data
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # Обновлять ежедневно
+  workflow_dispatch: # Ручной запуск
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+      
+    - name: Fetch Data
+      run: |
+        curl -H "User-Agent: GitHubActions" \
+          "https://shikimori.one/api/users/Akrifis" -o user.json
+        curl -H "User-Agent: GitHubActions" \
+          "https://shikimori.one/api/users/Akrifis/anime_rates?limit=5000&status=completed" -o anime.json
+        
+        echo "const userData = $(cat user.json);" > data.js
+        echo "const animeData = $(cat anime.json);" >> data.js
+        
+    - name: Commit Changes
+      run: |
+        git config user.name "GitHub Actions"
+        git config user.email "actions@github.com"
+        git add user.json anime.json data.js
+        git commit -m "Обновление данных"
+        git push
